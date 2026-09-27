@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Join on Hutch</title>
+<style>
+  :root { --ink: #3F5A4E; --mint: #A9D0BE; --cream: #F6F3EA; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 24px 16px; background: var(--cream); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Rounded", system-ui, sans-serif;
+  }
+  main {
+    width: 100%; max-width: 360px; padding: 28px 24px; text-align: center;
+    background: #fff; border: 2.2px solid var(--ink); border-radius: 28px;
+  }
+  h1 { margin: 0 0 8px; font-size: 26px; letter-spacing: -0.4px; }
+  p { margin: 0 0 20px; font-size: 15px; line-height: 1.45; opacity: 0.7; }
+  a.open {
+    display: block; padding: 16px; border-radius: 999px; background: var(--mint);
+    border: 2.2px solid var(--ink); color: var(--ink); font-weight: 600; font-size: 17px;
+    text-decoration: none;
+  }
+  .note { margin: 18px 0 0; font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>You're invited</h1>
+  <p>Someone wants to share their fridge with you on Hutch.</p>
+  <a class="open" id="open" href="#">Open in Hutch</a>
+  <p class="note">Nothing happens? Hutch isn't on the App Store yet — ask the person who invited you to install it on your phone.</p>
+</main>
+<script>
+  // 码在 # 后面，浏览器不会把它发给服务器；这里只拼成 app 的链接
+  var token = location.hash.slice(1);
+  var link = "hutch://join#" + token;
+  document.getElementById("open").href = link;
+  // Safari 常把没有点击的跳转静默拦掉，按钮才是主路径
+  if (token) location.href = link;
+</script>
+</body>
+</html>
